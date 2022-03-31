@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		132D129A27F6426D004A433E /* TomacaTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D129927F6426D004A433E /* TomacaTimerApp.swift */; };
-		132D129C27F6426D004A433E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D129B27F6426D004A433E /* ContentView.swift */; };
+		132D129C27F6426D004A433E /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D129B27F6426D004A433E /* CounterView.swift */; };
 		132D129E27F6426E004A433E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132D129D27F6426E004A433E /* Assets.xcassets */; };
 		132D12A127F6426E004A433E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132D12A027F6426E004A433E /* Preview Assets.xcassets */; };
-		132D12AB27F6426F004A433E /* TomacaTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12AA27F6426F004A433E /* TomacaTimerTests.swift */; };
-		132D12B527F6426F004A433E /* TomacaTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12B427F6426F004A433E /* TomacaTimerUITests.swift */; };
-		132D12B727F6426F004A433E /* TomacaTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12B627F6426F004A433E /* TomacaTimerUITestsLaunchTests.swift */; };
+		132D12C427F64923004A433E /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12C327F64923004A433E /* TimerViewModel.swift */; };
+		132D12C727F64ACA004A433E /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12C627F64ACA004A433E /* StartView.swift */; };
+		132D12C927F64CCB004A433E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12C827F64CCB004A433E /* TimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +36,14 @@
 /* Begin PBXFileReference section */
 		132D129627F6426D004A433E /* TomacaTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TomacaTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		132D129927F6426D004A433E /* TomacaTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomacaTimerApp.swift; sourceTree = "<group>"; };
-		132D129B27F6426D004A433E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		132D129B27F6426D004A433E /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		132D129D27F6426E004A433E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		132D12A027F6426E004A433E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		132D12A627F6426F004A433E /* TomacaTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TomacaTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		132D12AA27F6426F004A433E /* TomacaTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomacaTimerTests.swift; sourceTree = "<group>"; };
 		132D12B027F6426F004A433E /* TomacaTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TomacaTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		132D12B427F6426F004A433E /* TomacaTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomacaTimerUITests.swift; sourceTree = "<group>"; };
-		132D12B627F6426F004A433E /* TomacaTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomacaTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		132D12C327F64923004A433E /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		132D12C627F64ACA004A433E /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		132D12C827F64CCB004A433E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				132D129827F6426D004A433E /* TomacaTimer */,
-				132D12A927F6426F004A433E /* TomacaTimerTests */,
-				132D12B327F6426F004A433E /* TomacaTimerUITests */,
 				132D129727F6426D004A433E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,10 +92,12 @@
 		132D129827F6426D004A433E /* TomacaTimer */ = {
 			isa = PBXGroup;
 			children = (
+				132D12C527F64AB4004A433E /* Views */,
 				132D129927F6426D004A433E /* TomacaTimerApp.swift */,
-				132D129B27F6426D004A433E /* ContentView.swift */,
+				132D129B27F6426D004A433E /* CounterView.swift */,
 				132D129D27F6426E004A433E /* Assets.xcassets */,
 				132D129F27F6426E004A433E /* Preview Content */,
+				132D12C327F64923004A433E /* TimerViewModel.swift */,
 			);
 			path = TomacaTimer;
 			sourceTree = "<group>";
@@ -110,21 +110,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		132D12A927F6426F004A433E /* TomacaTimerTests */ = {
+		132D12C527F64AB4004A433E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				132D12AA27F6426F004A433E /* TomacaTimerTests.swift */,
+				132D12C627F64ACA004A433E /* StartView.swift */,
+				132D12C827F64CCB004A433E /* TimerView.swift */,
 			);
-			path = TomacaTimerTests;
-			sourceTree = "<group>";
-		};
-		132D12B327F6426F004A433E /* TomacaTimerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				132D12B427F6426F004A433E /* TomacaTimerUITests.swift */,
-				132D12B627F6426F004A433E /* TomacaTimerUITestsLaunchTests.swift */,
-			);
-			path = TomacaTimerUITests;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +249,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				132D129C27F6426D004A433E /* ContentView.swift in Sources */,
+				132D129C27F6426D004A433E /* CounterView.swift in Sources */,
+				132D12C427F64923004A433E /* TimerViewModel.swift in Sources */,
 				132D129A27F6426D004A433E /* TomacaTimerApp.swift in Sources */,
+				132D12C927F64CCB004A433E /* TimerView.swift in Sources */,
+				132D12C727F64ACA004A433E /* StartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +261,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				132D12AB27F6426F004A433E /* TomacaTimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +268,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				132D12B527F6426F004A433E /* TomacaTimerUITests.swift in Sources */,
-				132D12B727F6426F004A433E /* TomacaTimerUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
