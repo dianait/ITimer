@@ -13,7 +13,6 @@
 		132D12C427F64923004A433E /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12C327F64923004A433E /* TimerViewModel.swift */; };
 		132D12C727F64ACA004A433E /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12C627F64ACA004A433E /* StartView.swift */; };
 		132D12C927F64CCB004A433E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12C827F64CCB004A433E /* TimerView.swift */; };
-		132D12CC27F65694004A433E /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12CB27F65694004A433E /* ButtonView.swift */; };
 		1350229927F78A0100B7C142 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229827F78A0100B7C142 /* Counter.swift */; };
 		1350229C27F7931200B7C142 /* WorkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229B27F7931200B7C142 /* WorkSession.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +44,6 @@
 		132D12C327F64923004A433E /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		132D12C627F64ACA004A433E /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		132D12C827F64CCB004A433E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		132D12CB27F65694004A433E /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		1350229827F78A0100B7C142 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		1350229B27F7931200B7C142 /* WorkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				1350229A27F792ED00B7C142 /* Models */,
-				132D12CA27F65687004A433E /* Components */,
 				132D12C527F64AB4004A433E /* Views */,
 				132D129927F6426D004A433E /* TomacaTimerApp.swift */,
 				132D12C327F64923004A433E /* TimerViewModel.swift */,
@@ -123,14 +120,6 @@
 				1350229827F78A0100B7C142 /* Counter.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		132D12CA27F65687004A433E /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				132D12CB27F65694004A433E /* ButtonView.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		1350229A27F792ED00B7C142 /* Models */ = {
@@ -274,7 +263,6 @@
 				1350229927F78A0100B7C142 /* Counter.swift in Sources */,
 				132D12C427F64923004A433E /* TimerViewModel.swift in Sources */,
 				1350229C27F7931200B7C142 /* WorkSession.swift in Sources */,
-				132D12CC27F65694004A433E /* ButtonView.swift in Sources */,
 				132D129A27F6426D004A433E /* TomacaTimerApp.swift in Sources */,
 				132D12C927F64CCB004A433E /* TimerView.swift in Sources */,
 				132D12C727F64ACA004A433E /* StartView.swift in Sources */,
