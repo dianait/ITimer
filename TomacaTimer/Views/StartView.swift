@@ -18,7 +18,6 @@ struct StartView: View {
             
             Button("⏱ START"){
                 viewModel.saveTaskName(task: self.task)
-                viewModel.start()
             }.padding()
             .frame(width: 250)
             .background(Color(red: 0.9, green: 0.2, blue: 0.1))

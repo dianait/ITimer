@@ -9,7 +9,7 @@ struct TimerConfig {
 struct WorkSession {
     var timerConfig: TimerConfig = TimerConfig()
     var counterMain: Int = 0
-    var task: String = ""
+    var task: String = "Refactor ChatList"
     var totalTime: Int = 0
     var date: Date = Date.now
 }

@@ -8,23 +8,14 @@ struct TimerView: View {
               case .idle:
                 StartView(viewModel: viewModel)
               case .start(let workSession):
-                  Text("Doing... \(workSession.task)")
-                  Text("Main time \(workSession.counterMain)")
-                  Counter(viewModel: viewModel,
-                          minutes: workSession.timerConfig.mainTime,
-                          goTo: viewModel.pause)
+                  Counter(minutes: workSession.timerConfig.mainTime,
+                          goTo: viewModel.pause, task: workSession.task)
               case .shortPause(let workSession):
-                  Text("Doing... \(workSession.task)")
-                  Text("Short pause")
-                  Counter(viewModel: viewModel,
-                          minutes: workSession.timerConfig.shortBreakTime,
-                          goTo: viewModel.start)
+                  Counter(minutes: workSession.timerConfig.shortBreakTime,
+                          goTo: viewModel.start, task: workSession.task)
               case .longPause(let workSession):
-                  Text("Doing... \(workSession.task)")
-                  Text("Long pause")
-                  Counter(viewModel: viewModel,
-                          minutes: workSession.timerConfig.longBreakTime,
-                          goTo: viewModel.finish)
+                  Counter(minutes: workSession.timerConfig.longBreakTime,
+                          goTo: viewModel.finish, task: workSession.task)
               case .finish:
                   Text("Finish")
               }

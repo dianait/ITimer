@@ -45,5 +45,6 @@ class TimerViewModel: ObservableObject {
     
     func saveTaskName(task: String) -> Void {
         self.workSession.task = task
+        self.start()
     }
 }

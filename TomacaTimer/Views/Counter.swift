@@ -1,16 +1,11 @@
 import SwiftUI
 
 struct Counter: View {
-    var viewModel: TimerViewModel
     @State var timer: Timer? = nil
     @State var minutes: Int
     @State var seconds: Int = 0
     var goTo: () -> Void
-    
-    func stopTimer(){
-      timer?.invalidate()
-      timer = nil
-    }
+    var task: String
     
     private func startTimer(){
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
@@ -28,9 +23,9 @@ struct Counter: View {
     
     var body: some View {
         VStack {
-            Text("25 ✅ 5 ✅ 25  5  25  5  15")
+            Text("25 ✅ 5 ✅ 25  5  25  5  15").padding()
             Spacer()
-            Text("Refactor ChatList").font(.title2)
+            Text(self.task).font(.title2)
             Text("\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))")
                 .fontWeight(.bold)
                 .font(.largeTitle)
@@ -52,6 +47,6 @@ struct Counter: View {
 
 struct Counter_Previews: PreviewProvider {
     static var previews: some View {
-        Counter(viewModel: TimerViewModel(), minutes: 30, goTo: { print("") })
+        Counter(minutes: 30, goTo: { print("") }, task: "Refactor ChatList")
     }
 }
