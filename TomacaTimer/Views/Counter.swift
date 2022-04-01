@@ -28,14 +28,27 @@ struct Counter: View {
     
     var body: some View {
         VStack {
+            Text("25 ✅ 5 ✅ 25  5  25  5  15")
+            Spacer()
+            Text("Refactor ChatList").font(.title2)
             Text("\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))")
-                .fontWeight(.semibold)
-                .font(.title)
+                .fontWeight(.bold)
+                .font(.largeTitle)
                 .frame(maxWidth: .infinity)
                 .padding()
+            HStack{
+                Button("⏸"){}
+                Button("⏹"){}
+                Button("⏩"){}
+            }.font(.largeTitle)
+            Spacer()
+                Image("logo")
+                .resizable()
+                .padding()
+                .frame(width: 90, height: 90, alignment: .leading)
         }.onAppear{ startTimer() }
-        }
     }
+}
 
 struct Counter_Previews: PreviewProvider {
     static var previews: some View {
