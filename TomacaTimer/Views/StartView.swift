@@ -6,6 +6,9 @@ struct StartView: View {
     
     var body: some View {
         VStack {
+            Image("logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
             TextField("what you want to do?", text: self.$task)
             .padding()
             .shadow(color: Color.gray, radius: 15, x: 10, y: 10)
@@ -13,17 +16,24 @@ struct StartView: View {
             .frame(width: 250)
             .border(Color.gray)
             
-            Button("START"){
+            Button("⏱ START"){
                 viewModel.saveTaskName(task: self.task)
                 viewModel.start()
             }.padding()
-            .frame(width: 200)
+            .frame(width: 250)
             .background(Color(red: 0.9, green: 0.2, blue: 0.1))
             .foregroundColor(.white)
             .clipShape(Capsule())
             .shadow(color: Color.gray, radius: 1, x: 2, y: 2)
         }
        
+    }
+}
+
+
+struct StartView_Previews: PreviewProvider {
+    static var previews: some View {
+        StartView(viewModel: TimerViewModel())
     }
 }
 
