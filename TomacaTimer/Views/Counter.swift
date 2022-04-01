@@ -6,10 +6,15 @@ struct Counter: View {
     @State var minutes: Int
     @State var seconds: Int = 60
     var goTo: () -> Void
+    
+    private func isZeroNeeded(time: Int) -> Bool {
+        if time > 10 { return true }
+        return false
+    }
 
     var body: some View {
         VStack {
-            Text("\(minutes):\(seconds)")
+            Text("\(String(format: "%02d", minutes)):\(seconds)")
                 .fontWeight(.semibold)
                 .font(.title)
                 .onReceive(self.timer) { _ in
