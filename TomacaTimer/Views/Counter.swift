@@ -4,19 +4,27 @@ struct Counter: View {
     var viewModel: TimerViewModel
     @State var timer: Timer? = nil
     @State var minutes: Int
-    @State var seconds: Int = 59
+    @State var seconds: Int = 0
     var goTo: () -> Void
+    
+    func stopTimer(){
+      timer?.invalidate()
+      timer = nil
+    }
     
     private func startTimer(){
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
-         if self.seconds == 0 {
-           self.seconds = 59
-           self.minutes = self.minutes - 1
-           } else {
-           self.seconds = self.seconds - 1
-         }
-       }
-     }
+            if self.seconds == 0 {
+                if self.minutes == 0 {
+                    goTo()
+                }
+                self.seconds = 59
+                self.minutes = self.minutes - 1
+            } else {
+                self.seconds = self.seconds - 1
+            }
+        }
+    }
     
     var body: some View {
         VStack {
@@ -34,14 +42,3 @@ struct Counter_Previews: PreviewProvider {
         Counter(viewModel: TimerViewModel(), minutes: 30, goTo: { print("") })
     }
 }
-
-/*
- .onReceive(self.timer) { _ in
-     if self.minutes > 0 {
-         self.minutes -= 1
-     }
-     else {
-         goTo()
-     }
- }
- */

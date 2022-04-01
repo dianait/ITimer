@@ -15,13 +15,13 @@ struct TimerView: View {
                           goTo: viewModel.pause)
               case .shortPause(let workSession):
                   Text("Doing... \(workSession.task)")
-                  Text("Short pause \(workSession.counterShort)")
+                  Text("Short pause")
                   Counter(viewModel: viewModel,
                           minutes: workSession.timerConfig.shortBreakTime,
                           goTo: viewModel.start)
               case .longPause(let workSession):
                   Text("Doing... \(workSession.task)")
-                  Text("Long pause \(workSession.counterLong)")
+                  Text("Long pause")
                   Counter(viewModel: viewModel,
                           minutes: workSession.timerConfig.longBreakTime,
                           goTo: viewModel.finish)

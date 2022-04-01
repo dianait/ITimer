@@ -17,17 +17,17 @@ class TimerViewModel: ObservableObject {
     }
 
     private func shortPause() -> Void {
-        self.workSession.counterShort += 1
         self.state = .shortPause(self.workSession)
     }
     
     private func longPause() -> Void {
-        self.workSession.counterLong += 1
         self.state = .longPause(self.workSession)
     }
     
     func start() -> Void {
-        self.workSession.counterMain += 1
+        if self.workSession.counterMain < 4 {
+            self.workSession.counterMain += 1
+        }
         self.state = .start(self.workSession)
     }
     
