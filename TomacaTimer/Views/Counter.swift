@@ -1,16 +1,10 @@
 import SwiftUI
 
-struct CounterView: View {
+struct Counter: View {
+    var viewModel: TimerViewModel
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    var workSession: WorkSession
-    @State var timeRemaining: Int = 0
-    var currentState: String = "main"
-    
-    init(workSession: WorkSession) {
-        self.workSession = workSession
-        self.timeRemaining = workSession.timerConfig.mainTime
-        self.currentState = workSession.currentState
-    }
+    @State var timeRemaining: Int
+    var goTo: () -> Void
     
     var body: some View {
         Text("\(timeRemaining)")
@@ -21,10 +15,15 @@ struct CounterView: View {
                     self.timeRemaining -= 1
                 }
                 else {
-                
+                    goTo()
                 }
             }.frame(maxWidth: .infinity)
             .padding()
         }
     }
 
+struct Counter_Previews: PreviewProvider {
+    static var previews: some View {
+        Counter(viewModel: TimerViewModel(), timeRemaining: 30, goTo: { print("") })
+    }
+}

@@ -4,11 +4,9 @@ struct StartView: View {
     var viewModel: TimerViewModel
     @State private var task: String = ""
     var body: some View {
-        TextField("Your name", text: self.$task)
+        InputView()
         .padding()
-        Button("START"){
-            viewModel.start()
-        }
+        ButtonView(text: "START", action: viewModel.start)
     }
 }
 
