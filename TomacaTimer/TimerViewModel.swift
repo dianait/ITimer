@@ -1,25 +1,5 @@
 import Foundation
 
-
-struct TimerConfig {
-    let mainTime: Int = 5
-    let shortBreakTime: Int = 2
-    var longBreakTime: Int = 3
-    let rounds: Int = 1 // Number of sequences
-    let sequence: [String] = ["main", "short", "main", "short", "main", "short", "main", "long"]
-}
-
-struct WorkSession {
-    var timerConfig: TimerConfig = TimerConfig()
-    var counterMain: Int = 0
-    var counterShort: Int = 0
-    var counterLong: Int = 0
-    let task: String = ""
-    var totalTime: Int = 0
-    var date: Date = Date.now
-    var currentState: String = "main"
-}
-
 enum TimerState {
     case idle
     case start(WorkSession)
@@ -35,9 +15,18 @@ class TimerViewModel: ObservableObject {
     init(){
         self.workSession = WorkSession()
     }
+
+    private func shortPause() -> Void {
+        self.workSession.counterShort += 1
+        self.state = .shortPause(self.workSession)
+    }
+    
+    private func longPause() -> Void {
+        self.workSession.counterLong += 1
+        self.state = .longPause(self.workSession)
+    }
     
     func start() -> Void {
-        self.workSession.currentState = "main"
         self.workSession.counterMain += 1
         self.state = .start(self.workSession)
     }
@@ -50,19 +39,11 @@ class TimerViewModel: ObservableObject {
         longPause()
     }
     
-    private func shortPause() -> Void {
-        self.workSession.currentState = "short"
-        self.workSession.counterShort += 1
-        self.state = .shortPause(self.workSession)
-    }
-    
-    private func longPause() -> Void {
-        self.workSession.currentState = "long"
-        self.workSession.counterLong += 1
-        self.state = .longPause(self.workSession)
-    }
-    
     func finish() -> Void {
         self.state = .finish
+    }
+    
+    func saveTaskName(task: String) -> Void {
+        self.workSession.task = task
     }
 }
