@@ -7,6 +7,8 @@ struct TimerView: View {
               switch viewModel.state {
               case .idle:
                 StartView(viewModel: viewModel)
+              case .settings:
+                  SettingsView(viewModel: viewModel)
               case .start(let workSession):
                   Counter(workSession: workSession,
                           timeRemaing: workSession.timerConfig.mainTime,
