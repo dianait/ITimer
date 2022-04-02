@@ -2,12 +2,13 @@ import SwiftUI
 import Combine
 
 struct Counter: View {
+    var workSession: WorkSession
     @State var seconds: Int = 0
     @State var minutes: Int
     var goTo: () -> Void
-    var progress: String
-    var task: String
-    var currentState: String
+    var progress: String = ""
+    var task: String = ""
+    var currentState: String = ""
     @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
     @State var connectedTimer: Cancellable? = nil
     @State var isPaused: Bool = false
@@ -45,10 +46,10 @@ struct Counter: View {
     
     var body: some View {
         VStack {
-            Text(self.progress).padding()
+            Text(self.workSession.progress).padding()
             Spacer()
-            Text(self.currentState).font(.title)
-            if self.currentState != "☕️ Descanso" {
+            Text(self.workSession.currentState).font(.title)
+            if self.workSession.currentState != "☕️ Descanso" {
                 Text(self.task).font(.title2)
             }
             Text("\(timeString(time: self.minutes))")
@@ -68,7 +69,9 @@ struct Counter: View {
                         self.cancelTimer()
                     }
                 }
-                Button("⏩"){}
+                Button("⏩"){
+                    self.goTo()
+                }
             }.font(.largeTitle)
             Spacer()
                 Image("logo")
@@ -87,6 +90,8 @@ struct Counter: View {
 
 struct Counter_Previews: PreviewProvider {
     static var previews: some View {
-        Counter(minutes: 30, goTo: { print("") }, progress: "25 5 25 5 25 5 25 15", task: "Refactor ChatList", currentState: "👩‍💻 A trabajar...")
+        Counter(workSession: WorkSession(), minutes: 1) {
+            print("Test")
+        }
     }
 }

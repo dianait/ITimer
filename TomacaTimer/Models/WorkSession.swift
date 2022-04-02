@@ -1,9 +1,9 @@
 import Foundation
 
 struct TimerConfig {
-    let mainTime: Int = 1
-    let shortBreakTime: Int = 1
-    var longBreakTime: Int = 1
+    let mainTime: Int = 1 * 60
+    let shortBreakTime: Int = 1 * 60
+    var longBreakTime: Int = 1 * 60
     let completeSymbol: String = "✅"
     let incompleteSymbol: String = "❌"
     let cursorSymbol: String = "⏱"

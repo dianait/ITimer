@@ -35,12 +35,10 @@ class TimerViewModel: ObservableObject {
     }
     
     private func shortPause() -> Void {
-        self.workSession.currentState = "☕️ Descanso"
         self.state = .shortPause(self.workSession)
     }
     
     private func longPause() -> Void {
-        self.workSession.currentState = "☕️ Descanso"
         self.state = .longPause(self.workSession)
     }
     
@@ -56,6 +54,7 @@ class TimerViewModel: ObservableObject {
     }
     
     func pause(){
+        self.workSession.currentState = "☕️ Descanso"
         self.workSession.progress = updateProgress(isComplete: true)
         if workSession.counterMain < 4 {
             shortPause()
