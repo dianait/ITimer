@@ -9,18 +9,18 @@ struct TimerView: View {
                 StartView(viewModel: viewModel)
               case .start(let workSession):
                   Counter(workSession: workSession,
-                          minutes: workSession.timerConfig.mainTime,
-                          goTo: viewModel.pause)
+                          timeRemaing: workSession.timerConfig.mainTime,
+                          goTo: { time in viewModel.pause(time: time) })
               case .shortPause(let workSession):
                   Counter(workSession: workSession,
-                          minutes: workSession.timerConfig.shortBreakTime,
-                          goTo: viewModel.start)
+                          timeRemaing: workSession.timerConfig.shortBreakTime,
+                          goTo: { time in viewModel.start(time: time) })
               case .longPause(let workSession):
                   Counter(workSession: workSession,
-                          minutes: workSession.timerConfig.longBreakTime,
-                          goTo: viewModel.finish)
-              case .finish:
-                  Text("Finish")
+                          timeRemaing: workSession.timerConfig.longBreakTime,
+                          goTo: { time in viewModel.finish(time: time) })
+              case .finish(let workSession):
+                  FinishView(date: workSession.dateString, totalTime: workSession.totalTimeString)
               }
           }
     }

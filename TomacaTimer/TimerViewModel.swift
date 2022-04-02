@@ -5,7 +5,7 @@ enum TimerState {
     case start(WorkSession)
     case shortPause(WorkSession)
     case longPause(WorkSession)
-    case finish
+    case finish(WorkSession)
 }
 
 class TimerViewModel: ObservableObject {
@@ -35,25 +35,31 @@ class TimerViewModel: ObservableObject {
     }
     
     private func shortPause() -> Void {
+        self.workSession.currentState = "shortPause"
         self.state = .shortPause(self.workSession)
     }
     
     private func longPause() -> Void {
+        self.workSession.currentState = "longPause"
         self.state = .longPause(self.workSession)
     }
     
-    func start() -> Void {
+    func start(time: Int) -> Void {
+        self.workSession.currentState = "work"
         if self.workSession.counterMain >= 1 {
-            self.workSession.progress = updateProgress(isComplete: true)
-        }
-        self.workSession.currentState = "👩‍💻 A trabajar..."
+            let timePass = self.workSession.timerConfig.shortBreakTime - time
+            self.workSession.totalTime += timePass
+            self.workSession.progress = updateProgress(isComplete: true)        }
+        self.workSession.currentStateTitle = "👩‍💻 A trabajar..."
         if self.workSession.counterMain < 4 {
             self.workSession.counterMain += 1
         }
         self.state = .start(self.workSession)
     }
     
-    func pause(){
+    func pause(time: Int){
+        let timePass = self.workSession.timerConfig.mainTime - time
+        self.workSession.totalTime += timePass
         self.workSession.currentState = "☕️ Descanso"
         self.workSession.progress = updateProgress(isComplete: true)
         if workSession.counterMain < 4 {
@@ -63,12 +69,25 @@ class TimerViewModel: ObservableObject {
         longPause()
     }
     
-    func finish() -> Void {
-        self.state = .finish
+    func finish(time: Int) -> Void {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd'-'MM'-'YYY'"
+        let date = dateFormatter.string(from: self.workSession.date)
+        self.workSession.dateString = date
+        let timePass = self.workSession.timerConfig.mainTime - time
+        self.workSession.totalTime += timePass
+        self.workSession.totalTimeString = timeString(time: self.workSession.totalTime)
+        self.state = .finish(self.workSession)
     }
     
     func saveTaskName(task: String) -> Void {
         self.workSession.task = task
-        self.start()
+        self.start(time: 0)
+    }
+    
+    func timeString(time: Int) -> String {
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i", minutes, seconds)
     }
 }

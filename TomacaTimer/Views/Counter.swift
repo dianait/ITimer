@@ -4,41 +4,38 @@ import Combine
 struct Counter: View {
     var workSession: WorkSession
     @State var seconds: Int = 0
-    @State var minutes: Int
-    var goTo: () -> Void
-    var progress: String = ""
-    var task: String = ""
-    var currentState: String = ""
+    @State var timeRemaing: Int
+    var goTo: (_ time: Int) -> Void
     @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
     @State var connectedTimer: Cancellable? = nil
     @State var isPaused: Bool = false
     
-    func instantiateTimer() {
+    private func instantiateTimer() {
            self.isPaused = false
            self.timer = Timer.publish(every: 1, on: .main, in: .common)
            self.connectedTimer = self.timer.connect()
            return
        }
        
-       func cancelTimer() {
+    private func cancelTimer() {
            self.isPaused = true
            self.connectedTimer?.cancel()
            return
        }
        
-       func resetCounter() {
-           self.minutes = 0
+    private func resetCounter() {
+           self.timeRemaing = 0
            return
        }
        
-       func restartTimer() {
-           self.minutes = 1 * 60
+    private func restartTimer() {
+           self.timeRemaing = 1 * 60
            self.cancelTimer()
            self.instantiateTimer()
            return
        }
     
-       func timeString(time: Int) -> String {
+    private func timeString(time: Int) -> String {
            let minutes = Int(time) / 60 % 60
            let seconds = Int(time) % 60
            return String(format:"%02i:%02i", minutes, seconds)
@@ -48,11 +45,9 @@ struct Counter: View {
         VStack {
             Text(self.workSession.progress).padding()
             Spacer()
-            Text(self.workSession.currentState).font(.title)
-            if self.workSession.currentState != "☕️ Descanso" {
-                Text(self.task).font(.title2)
-            }
-            Text("\(timeString(time: self.minutes))")
+            Text(self.workSession.currentStateTitle).font(.title)
+            Text(self.workSession.task).font(.title2)
+            Text("\(timeString(time: self.timeRemaing))")
                 .fontWeight(.semibold)
                 .font(.system(size: 60))
                 .frame(height: 80.0)
@@ -70,7 +65,7 @@ struct Counter: View {
                     }
                 }
                 Button("⏩"){
-                    self.goTo()
+                    self.goTo(self.timeRemaing)
                 }
             }.font(.largeTitle)
             Spacer()
@@ -83,15 +78,10 @@ struct Counter: View {
         }.onDisappear {
             self.cancelTimer()
         }.onReceive(timer) { _ in
-            self.minutes -= 1
-        }
-    }
-}
-
-struct Counter_Previews: PreviewProvider {
-    static var previews: some View {
-        Counter(workSession: WorkSession(), minutes: 1) {
-            print("Test")
+            self.timeRemaing -= 1
+            if self.timeRemaing == 0 {
+                goTo(self.timeRemaing)
+            }
         }
     }
 }
