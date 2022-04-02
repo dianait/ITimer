@@ -2,11 +2,12 @@ import SwiftUI
 
 struct Counter: View {
     @State var timer: Timer? = nil
-    @State var minutes: Int
     @State var seconds: Int = 0
+    @State var minutes: Int
     var goTo: () -> Void
-    var task: String
     var progress: String
+    var task: String
+    var currentState: String
     
     private func startTimer(){
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
@@ -26,7 +27,10 @@ struct Counter: View {
         VStack {
             Text(self.progress).padding()
             Spacer()
-            Text(self.task).font(.title2)
+            Text(self.currentState).font(.title)
+            if self.currentState != "☕️ Descanso" {
+                Text(self.task).font(.title2)
+            }
             Text("\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))")
                 .fontWeight(.bold)
                 .font(.largeTitle)
@@ -48,6 +52,6 @@ struct Counter: View {
 
 struct Counter_Previews: PreviewProvider {
     static var previews: some View {
-        Counter(minutes: 30, goTo: { print("") }, task: "Refactor ChatList", progress: "25 5 25 5 25 5 25 15")
+        Counter(minutes: 30, goTo: { print("") }, progress: "25 5 25 5 25 5 25 15", task: "Refactor ChatList", currentState: "👩‍💻 A trabajar...")
     }
 }
