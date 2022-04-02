@@ -1,27 +1,47 @@
 import SwiftUI
+import Combine
 
 struct Counter: View {
-    @State var timer: Timer? = nil
     @State var seconds: Int = 0
     @State var minutes: Int
     var goTo: () -> Void
     var progress: String
     var task: String
     var currentState: String
+    @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
+    @State var connectedTimer: Cancellable? = nil
+    @State var isPaused: Bool = false
     
-    private func startTimer(){
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
-            if self.seconds == 0 {
-                if self.minutes == 0 {
-                    goTo()
-                }
-                self.seconds = 59
-                self.minutes = self.minutes - 1
-            } else {
-                self.seconds = self.seconds - 1
-            }
-        }
-    }
+    func instantiateTimer() {
+           self.isPaused = false
+           self.timer = Timer.publish(every: 1, on: .main, in: .common)
+           self.connectedTimer = self.timer.connect()
+           return
+       }
+       
+       func cancelTimer() {
+           self.isPaused = true
+           self.connectedTimer?.cancel()
+           return
+       }
+       
+       func resetCounter() {
+           self.minutes = 0
+           return
+       }
+       
+       func restartTimer() {
+           self.minutes = 1 * 60
+           self.cancelTimer()
+           self.instantiateTimer()
+           return
+       }
+    
+       func timeString(time: Int) -> String {
+           let minutes = Int(time) / 60 % 60
+           let seconds = Int(time) % 60
+           return String(format:"%02i:%02i", minutes, seconds)
+       }
     
     var body: some View {
         VStack {
@@ -31,14 +51,23 @@ struct Counter: View {
             if self.currentState != "☕️ Descanso" {
                 Text(self.task).font(.title2)
             }
-            Text("\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))")
-                .fontWeight(.bold)
-                .font(.largeTitle)
+            Text("\(timeString(time: self.minutes))")
+                .fontWeight(.semibold)
+                .font(.system(size: 60))
+                .frame(height: 80.0)
                 .frame(maxWidth: .infinity)
                 .padding()
             HStack{
-                Button("⏸"){}
-                Button("⏹"){}
+                if isPaused {
+                    Button("▶️"){
+                        self.instantiateTimer()
+                    }
+                }
+                else {
+                    Button("⏸"){
+                        self.cancelTimer()
+                    }
+                }
                 Button("⏩"){}
             }.font(.largeTitle)
             Spacer()
@@ -46,7 +75,13 @@ struct Counter: View {
                 .resizable()
                 .padding()
                 .frame(width: 90, height: 90, alignment: .leading)
-        }.onAppear{ startTimer() }
+        }.onAppear {
+            self.instantiateTimer()
+        }.onDisappear {
+            self.cancelTimer()
+        }.onReceive(timer) { _ in
+            self.minutes -= 1
+        }
     }
 }
 
