@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import AlertToast
 
 struct Counter: View {
     var workSession: WorkSession
@@ -8,6 +9,7 @@ struct Counter: View {
     @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
     @State var connectedTimer: Cancellable? = nil
     @State var isPaused: Bool = false
+    @State private var showToast = false
     
     private func instantiateTimer() {
            self.isPaused = false
@@ -55,7 +57,12 @@ struct Counter: View {
             HStack{
                 if isPaused { Button("▶️"){ self.instantiateTimer() } }
                 else { Button("⏸"){ self.cancelTimer() } }
-                Button("⏩"){ self.goTo(self.timeRemaing, false) }
+                Button("⏩"){
+                    self.showToast = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.goTo(self.timeRemaing, false)
+                    }
+                }
             }.font(.system(size: 40))
             Spacer()
                 Image("logo")
@@ -69,8 +76,15 @@ struct Counter: View {
         }.onReceive(timer) { _ in
             self.timeRemaing -= 1
             if self.timeRemaing == 0 {
-                goTo(self.timeRemaing, true)
+                self.showToast = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    goTo(self.timeRemaing, true)
+                }
+
+              
             }
+        }.toast(isPresenting: $showToast, duration: 1){
+            AlertToast(displayMode: .hud, type: .regular, title: "Tiempo finalizado")
         }
     }
 }
