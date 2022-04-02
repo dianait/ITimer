@@ -6,6 +6,7 @@ struct Counter: View {
     @State var seconds: Int = 0
     var goTo: () -> Void
     var task: String
+    var progress: String
     
     private func startTimer(){
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
@@ -23,7 +24,7 @@ struct Counter: View {
     
     var body: some View {
         VStack {
-            Text("25 ✅ 5 ✅ 25  5  25  5  15").padding()
+            Text(self.progress).padding()
             Spacer()
             Text(self.task).font(.title2)
             Text("\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))")
@@ -47,6 +48,6 @@ struct Counter: View {
 
 struct Counter_Previews: PreviewProvider {
     static var previews: some View {
-        Counter(minutes: 30, goTo: { print("") }, task: "Refactor ChatList")
+        Counter(minutes: 30, goTo: { print("") }, task: "Refactor ChatList", progress: "25 5 25 5 25 5 25 15")
     }
 }
