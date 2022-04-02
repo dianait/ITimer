@@ -1,25 +1,33 @@
 import SwiftUI
 
 struct FinishView: View {
-    var date: String
-    var totalTime: String
+    var viewModel: TimerViewModel
+    var workSession: WorkSession
+    var dateString = ""
+    var timeString = ""
+    
+    init(viewModel: TimerViewModel, workSession: WorkSession){
+        self.viewModel = viewModel
+        self.workSession = workSession
+        self.dateString = viewModel.getDateString(date: self.workSession.date)
+        self.timeString = viewModel.timeString(time: self.workSession.totalTime)
+    }
+    
     var body: some View {
         VStack{
-            Text("📅 \(date)").fontWeight(.semibold)
+            Text("📅 \(self.dateString)").fontWeight(.semibold)
                 .font(.system(size: 20))
-                .frame(height: 30.0)
                 .frame(maxWidth: .infinity)
-                .padding()
-            Text("⏳ \(totalTime)").fontWeight(.semibold)
+            Text("⏳ \(self.timeString)").fontWeight(.semibold)
                 .font(.system(size: 50))
-                .frame(height: 80.0)
                 .frame(maxWidth: .infinity)
+            WorkListView(viewModel: viewModel)
         }
     }
 }
 
 struct FinishView_Previews: PreviewProvider {
     static var previews: some View {
-        FinishView(date: "23/03/2022", totalTime: "34:23")
+        FinishView(viewModel: TimerViewModel(), workSession: WorkSession())
     }
 }

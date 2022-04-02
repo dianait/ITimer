@@ -5,7 +5,7 @@ struct Counter: View {
     var workSession: WorkSession
     @State var seconds: Int = 0
     @State var timeRemaing: Int
-    var goTo: (_ time: Int) -> Void
+    var goTo: (_ time: Int, _ isCompleted: Bool) -> Void
     @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
     @State var connectedTimer: Cancellable? = nil
     @State var isPaused: Bool = false
@@ -65,9 +65,9 @@ struct Counter: View {
                     }
                 }
                 Button("⏩"){
-                    self.goTo(self.timeRemaing)
+                    self.goTo(self.timeRemaing, false)
                 }
-            }.font(.largeTitle)
+            }.font(.system(size: 40))
             Spacer()
                 Image("logo")
                 .resizable()
@@ -80,7 +80,7 @@ struct Counter: View {
         }.onReceive(timer) { _ in
             self.timeRemaing -= 1
             if self.timeRemaing == 0 {
-                goTo(self.timeRemaing)
+                goTo(self.timeRemaing, true)
             }
         }
     }

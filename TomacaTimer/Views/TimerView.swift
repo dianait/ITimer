@@ -10,17 +10,17 @@ struct TimerView: View {
               case .start(let workSession):
                   Counter(workSession: workSession,
                           timeRemaing: workSession.timerConfig.mainTime,
-                          goTo: { time in viewModel.pause(time: time) })
+                          goTo: { time, isCompleted in viewModel.pause(time: time, isCompleted: isCompleted) })
               case .shortPause(let workSession):
                   Counter(workSession: workSession,
                           timeRemaing: workSession.timerConfig.shortBreakTime,
-                          goTo: { time in viewModel.start(time: time) })
+                          goTo: { time, isCompleted in viewModel.start(time: time, isCompleted: isCompleted) })
               case .longPause(let workSession):
                   Counter(workSession: workSession,
                           timeRemaing: workSession.timerConfig.longBreakTime,
-                          goTo: { time in viewModel.finish(time: time) })
+                          goTo: { time, isCompleted in viewModel.finish(time: time) })
               case .finish(let workSession):
-                  FinishView(date: workSession.dateString, totalTime: workSession.totalTimeString)
+                  FinishView(viewModel: viewModel, workSession: workSession)
               }
           }
     }

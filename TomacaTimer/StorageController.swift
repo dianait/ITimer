@@ -1,8 +1,15 @@
 import Foundation
 
-struct Work: Encodable, Decodable {
+struct Work: Hashable, Encodable, Decodable {
+    let task: String
     let date: Date
-    let time: Int
+    var time: Int
+}
+
+struct WorkString: Hashable, Encodable, Decodable {
+    let task: String
+    let date: String
+    var time: String
 }
 
 class StorageController {
@@ -36,5 +43,5 @@ class StorageController {
         }
         return workList
     }
-
+    
 }

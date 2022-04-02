@@ -15,6 +15,7 @@
 		132D12C927F64CCB004A433E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D12C827F64CCB004A433E /* TimerView.swift */; };
 		132F56B427F8CE990080C28A /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132F56B327F8CE990080C28A /* StorageController.swift */; };
 		132F56B627F8CF6F0080C28A /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132F56B527F8CF6F0080C28A /* FinishView.swift */; };
+		132F56B827F8E09E0080C28A /* WorkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132F56B727F8E09E0080C28A /* WorkListView.swift */; };
 		1350229927F78A0100B7C142 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229827F78A0100B7C142 /* Counter.swift */; };
 		1350229C27F7931200B7C142 /* WorkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229B27F7931200B7C142 /* WorkSession.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		132D12C827F64CCB004A433E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		132F56B327F8CE990080C28A /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		132F56B527F8CF6F0080C28A /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
+		132F56B727F8E09E0080C28A /* WorkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListView.swift; sourceTree = "<group>"; };
 		1350229827F78A0100B7C142 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		1350229B27F7931200B7C142 /* WorkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 				132D12C827F64CCB004A433E /* TimerView.swift */,
 				1350229827F78A0100B7C142 /* Counter.swift */,
 				132F56B527F8CF6F0080C28A /* FinishView.swift */,
+				132F56B727F8E09E0080C28A /* WorkListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				132D12C427F64923004A433E /* TimerViewModel.swift in Sources */,
 				1350229C27F7931200B7C142 /* WorkSession.swift in Sources */,
 				132D129A27F6426D004A433E /* TomacaTimerApp.swift in Sources */,
+				132F56B827F8E09E0080C28A /* WorkListView.swift in Sources */,
 				132D12C927F64CCB004A433E /* TimerView.swift in Sources */,
 				132F56B427F8CE990080C28A /* StorageController.swift in Sources */,
 				132D12C727F64ACA004A433E /* StartView.swift in Sources */,
