@@ -3,7 +3,6 @@ import Combine
 
 struct Counter: View {
     var workSession: WorkSession
-    @State var seconds: Int = 0
     @State var timeRemaing: Int
     var goTo: (_ time: Int, _ isCompleted: Bool) -> Void
     @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
@@ -54,19 +53,9 @@ struct Counter: View {
                 .frame(maxWidth: .infinity)
                 .padding()
             HStack{
-                if isPaused {
-                    Button("▶️"){
-                        self.instantiateTimer()
-                    }
-                }
-                else {
-                    Button("⏸"){
-                        self.cancelTimer()
-                    }
-                }
-                Button("⏩"){
-                    self.goTo(self.timeRemaing, false)
-                }
+                if isPaused { Button("▶️"){ self.instantiateTimer() } }
+                else { Button("⏸"){ self.cancelTimer() } }
+                Button("⏩"){ self.goTo(self.timeRemaing, false) }
             }.font(.system(size: 40))
             Spacer()
                 Image("logo")
