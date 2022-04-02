@@ -3,6 +3,7 @@ import Foundation
 enum TimerState {
     case idle
     case start(WorkSession)
+    case settings
     case shortPause(WorkSession)
     case longPause(WorkSession)
     case finish(WorkSession)
@@ -19,6 +20,10 @@ class TimerViewModel: ObservableObject {
     }
     
     // MARK: STATES
+    
+    func goToSettings() {
+        self.state = .settings
+    }
     
     func start(time: Int, isCompleted: Bool) -> Void {
         self.workSession.currentState = "work"
@@ -72,8 +77,7 @@ class TimerViewModel: ObservableObject {
         self.state = .idle
     }
     
-    func setAndStart(longBrake: Int, task: String) {
-        updateLongBrake(longBrake: longBrake)
+    func setAndStart(task: String) {
         saveTaskName(task: task)
         start(time: 0, isCompleted: false)
     }
