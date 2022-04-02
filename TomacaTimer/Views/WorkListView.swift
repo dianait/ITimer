@@ -13,7 +13,7 @@ struct WorkListView: View {
             }
             HStack {
                 Button("⏪") {
-                    viewModel.idle()
+                    viewModel.initialize()
                 }.font(.system(size: 40))
                 Button("🚮") {
                     viewModel.clearWorkList()
