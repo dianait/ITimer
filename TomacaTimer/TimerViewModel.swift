@@ -13,10 +13,12 @@ class TimerViewModel: ObservableObject {
     @Published var state: TimerState = .idle
     var workSession: WorkSession
     var storage: StorageController
+    var notificacition: Notification
     
     init(){
         self.workSession = WorkSession()
         self.storage = StorageController()
+        self.notificacition = Notification()
     }
     
     // MARK: STATES
@@ -26,6 +28,10 @@ class TimerViewModel: ObservableObject {
     }
     
     func start(time: Int, isCompleted: Bool) -> Void {
+        if workSession.counterMain > 0 {
+            let subtitle = isCompleted ? "A seguir picando... ¡Ánimo! 💪" : "¿No necesitas descansar?"
+            self.notificacition.create(title: self.workSession.timerConfig.workTitle, subtitle: subtitle)
+        }
         self.workSession.currentState = "work"
         let timePass = self.workSession.timerConfig.shortBreakTime - time
         self.workSession.totalTime += timePass
@@ -36,6 +42,8 @@ class TimerViewModel: ObservableObject {
     }
     
     func pause(time: Int, isCompleted: Bool){
+        let subtitle = isCompleted ? "¡Bien Hecho! 🎉" : "Descansa un poco y luego a tope 💪"
+        self.notificacition.create(title: self.workSession.timerConfig.BreakTitle, subtitle: subtitle)
         let timePass = self.workSession.timerConfig.mainTime - time
         self.workSession.totalTime += timePass
         self.workSession.currentStateTitle = self.workSession.timerConfig.BreakTitle
@@ -112,7 +120,6 @@ class TimerViewModel: ObservableObject {
 
     
     // MARK: UTILS
-    
     func isDateIn() -> Int {
         let dateFromTheTask = getDateString(date:  self.workSession.date)
         for i in 0..<storage.workList.count {

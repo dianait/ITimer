@@ -30,7 +30,7 @@ struct SettingsView: View {
                 }
             }
                 
-        }  .toast(isPresenting: $showToast, duration: 1){
+        }.toast(isPresenting: $showToast, duration: 1){
             AlertToast(displayMode: .hud, type: .regular, title: "💾 Pausa guardada")
         }
     }
