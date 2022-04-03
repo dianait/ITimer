@@ -34,7 +34,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
-		<string>LaunchScreenBackground</string>
+		<string>Secondary</string>
 		<key>UIImageName</key>
 		<string>logo</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
