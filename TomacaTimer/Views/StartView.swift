@@ -17,7 +17,9 @@ struct StartView: View {
             .border(Color.gray)
             
             Button("⏱ START"){
-                viewModel.setAndStart(task: task)
+                if task != "" {
+                    viewModel.setAndStart(task: task)
+                }
             }.padding()
             .frame(width: 250)
             .background(Color(red: 0.9, green: 0.2, blue: 0.1))
@@ -36,7 +38,6 @@ struct StartView: View {
        
     }
 }
-
 
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
