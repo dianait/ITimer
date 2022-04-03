@@ -58,6 +58,7 @@ struct Counter: View {
                 if isPaused { Button("▶️"){ self.instantiateTimer() } }
                 else { Button("⏸"){ self.cancelTimer() } }
                 Button("⏩"){
+                    self.cancelTimer()
                     self.showToast = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         self.goTo(self.timeRemaing, false)
@@ -76,15 +77,16 @@ struct Counter: View {
         }.onReceive(timer) { _ in
             self.timeRemaing -= 1
             if self.timeRemaing == 0 {
+                self.cancelTimer()
                 self.showToast = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     goTo(self.timeRemaing, true)
                 }
-
-              
             }
         }.toast(isPresenting: $showToast, duration: 1){
-            AlertToast(displayMode: .hud, type: .regular, title: "Tiempo finalizado")
+            AlertToast(displayMode: .hud, type: .regular, title: "⏳ Bloque terminado")
+            // https://github.com/elai950/AlertToast
+            // https://medium.com/swlh/presenting-apples-music-alerts-in-swiftui-7f5c32cebed6
         }
     }
 }
