@@ -21,6 +21,10 @@
 		1350229927F78A0100B7C142 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229827F78A0100B7C142 /* Counter.swift */; };
 		1350229C27F7931200B7C142 /* WorkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229B27F7931200B7C142 /* WorkSession.swift */; };
 		13F5619E27F9968E005E0FFE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5619D27F9968E005E0FFE /* NotificationController.swift */; };
+		13F561A427F9B990005E0FFE /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F561A327F9B990005E0FFE /* ButtonView.swift */; };
+		13F561A827F9BE87005E0FFE /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F561A727F9BE87005E0FFE /* FormView.swift */; };
+		13F561AB27F9C01D005E0FFE /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F561AA27F9C01D005E0FFE /* TimerController.swift */; };
+		13F561AD27F9C301005E0FFE /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F561AC27F9C301005E0FFE /* TitleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		1350229B27F7931200B7C142 /* WorkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSession.swift; sourceTree = "<group>"; };
 		13F5619D27F9968E005E0FFE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		13F5619F27F99924005E0FFE /* TomacaTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TomacaTimer.entitlements; sourceTree = "<group>"; };
+		13F561A327F9B990005E0FFE /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		13F561A727F9BE87005E0FFE /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
+		13F561AA27F9C01D005E0FFE /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		13F561AC27F9C301005E0FFE /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,13 +116,13 @@
 		132D129827F6426D004A433E /* TomacaTimer */ = {
 			isa = PBXGroup;
 			children = (
+				13F561A927F9C00A005E0FFE /* Controllers */,
 				13F5619F27F99924005E0FFE /* TomacaTimer.entitlements */,
+				13F561A027F9B92E005E0FFE /* Components */,
 				1350229A27F792ED00B7C142 /* Models */,
 				132D12C527F64AB4004A433E /* Views */,
 				132D129927F6426D004A433E /* TomacaTimerApp.swift */,
 				132D12C327F64923004A433E /* TimerViewModel.swift */,
-				132F56B327F8CE990080C28A /* StorageController.swift */,
-				13F5619D27F9968E005E0FFE /* NotificationController.swift */,
 				132D129D27F6426E004A433E /* Assets.xcassets */,
 				132F56C027F9192C0080C28A /* Info.plist */,
 				132D129F27F6426E004A433E /* Preview Content */,
@@ -149,6 +157,26 @@
 				1350229B27F7931200B7C142 /* WorkSession.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		13F561A027F9B92E005E0FFE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				13F561A327F9B990005E0FFE /* ButtonView.swift */,
+				13F561A727F9BE87005E0FFE /* FormView.swift */,
+				13F561AC27F9C301005E0FFE /* TitleView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		13F561A927F9C00A005E0FFE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				132F56B327F8CE990080C28A /* StorageController.swift */,
+				13F5619D27F9968E005E0FFE /* NotificationController.swift */,
+				13F561AA27F9C01D005E0FFE /* TimerController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,8 +315,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13F561A827F9BE87005E0FFE /* FormView.swift in Sources */,
 				1350229927F78A0100B7C142 /* Counter.swift in Sources */,
 				132D12C427F64923004A433E /* TimerViewModel.swift in Sources */,
+				13F561A427F9B990005E0FFE /* ButtonView.swift in Sources */,
 				1350229C27F7931200B7C142 /* WorkSession.swift in Sources */,
 				13F5619E27F9968E005E0FFE /* NotificationController.swift in Sources */,
 				132D129A27F6426D004A433E /* TomacaTimerApp.swift in Sources */,
@@ -296,8 +326,10 @@
 				132F56BC27F90EA50080C28A /* SettingsView.swift in Sources */,
 				132D12C927F64CCB004A433E /* TimerView.swift in Sources */,
 				132F56B427F8CE990080C28A /* StorageController.swift in Sources */,
+				13F561AB27F9C01D005E0FFE /* TimerController.swift in Sources */,
 				132D12C727F64ACA004A433E /* StartView.swift in Sources */,
 				132F56B627F8CF6F0080C28A /* FinishView.swift in Sources */,
+				13F561AD27F9C301005E0FFE /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
