@@ -22,15 +22,9 @@ class TimerViewModel: ObservableObject {
     }
     
     // MARK: STATES
-    
-    func goToSettings() {
-        self.state = .settings
-    }
-    
     func start(time: Int, isCompleted: Bool) -> Void {
         if workSession.counterMain > 0 {
-            let subtitle = isCompleted ? "A seguir picando... ¡Ánimo! 💪" : "¿No necesitas descansar?"
-            self.notificacition.create(title: self.workSession.timerConfig.workTitle, subtitle: subtitle)
+            self.notificacition.display(state: self.workSession.currentState)
         }
         self.workSession.currentState = "work"
         let timePass = self.workSession.timerConfig.shortBreakTime - time
@@ -42,8 +36,7 @@ class TimerViewModel: ObservableObject {
     }
     
     func pause(time: Int, isCompleted: Bool){
-        let subtitle = isCompleted ? "¡Bien Hecho! 🎉" : "Descansa un poco y luego a tope 💪"
-        self.notificacition.create(title: self.workSession.timerConfig.BreakTitle, subtitle: subtitle)
+        self.notificacition.display(state: self.workSession.currentState)
         let timePass = self.workSession.timerConfig.mainTime - time
         self.workSession.totalTime += timePass
         self.workSession.currentStateTitle = self.workSession.timerConfig.BreakTitle
@@ -90,6 +83,11 @@ class TimerViewModel: ObservableObject {
         start(time: 0, isCompleted: false)
     }
     
+    func settings() {
+        self.state = .settings
+    }
+    
+    
     // MARK: UPDATES
     private func updateProgress(isComplete: Bool) -> String {
         let symbol = isComplete ? self.workSession.timerConfig.completeSymbol : self.workSession.timerConfig.incompleteSymbol
@@ -102,7 +100,11 @@ class TimerViewModel: ObservableObject {
                     self.workSession.currentCursor = i
                 }
             }
-            progress[self.workSession.currentCursor + 1] += self.workSession.timerConfig.cursorSymbol
+            
+            if (self.workSession.counterMain < 5) {
+                progress[self.workSession.currentCursor + 1] += self.workSession.timerConfig.cursorSymbol
+            }
+            
         }
         return progress.joined(separator: " ")
     }
@@ -117,7 +119,6 @@ class TimerViewModel: ObservableObject {
             storage.saveLongBrake(userLongBrake: longBrake)
         }
     }
-
     
     // MARK: UTILS
     func isDateIn() -> Int {

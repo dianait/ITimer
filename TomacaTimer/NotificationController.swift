@@ -2,9 +2,15 @@ import Foundation
 import UserNotifications
 
 class Notification {
+    let notifiactionToMain = INotification(title: "👩‍💻 Trabajar", subtitle: "")
+    let notifiactionToShortBrake = INotification(title:"☕️ Descanso", subtitle: "")
+    let notifiactionToLongBrake = INotification(title: "🏁 ¡Bien Hecho!", subtitle: "")
+    var currentNotification: INotification
+    
     
     init() {
-        askPermission()
+        self.currentNotification = self.notifiactionToShortBrake
+        self.askPermission()
     }
         
     private func askPermission() {
@@ -17,15 +23,31 @@ class Notification {
         }
     }
     
-    func create(title: String, subtitle: String){
+    private func create(noti: INotification){
         let content = UNMutableNotificationContent()
-        content.title = title
-        content.subtitle = subtitle
+        content.title = noti.title
+        content.subtitle = noti.subtitle
         content.sound = UNNotificationSound.default
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: noti.timeToWait, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
     
-
+    private func getCurrent(currentState: String) -> INotification {
+        switch currentState {
+        case "work":
+            return self.notifiactionToShortBrake
+        case "longPause":
+            return self.notifiactionToLongBrake
+        case "shortPause":
+            return self.notifiactionToMain
+        default:
+            return self.notifiactionToShortBrake
+        
+        }
+    }
+    
+    func display(state: String){
+        self.create(noti: self.getCurrent(currentState: state))
+    }
 }

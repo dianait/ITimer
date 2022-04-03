@@ -20,6 +20,7 @@
 		132F56BF27F911C40080C28A /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 132F56BE27F911C40080C28A /* AlertToast */; };
 		1350229927F78A0100B7C142 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229827F78A0100B7C142 /* Counter.swift */; };
 		1350229C27F7931200B7C142 /* WorkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229B27F7931200B7C142 /* WorkSession.swift */; };
+		13F5619E27F9968E005E0FFE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5619D27F9968E005E0FFE /* NotificationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		132F56C027F9192C0080C28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1350229827F78A0100B7C142 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		1350229B27F7931200B7C142 /* WorkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSession.swift; sourceTree = "<group>"; };
+		13F5619D27F9968E005E0FFE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		13F5619F27F99924005E0FFE /* TomacaTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TomacaTimer.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +108,13 @@
 		132D129827F6426D004A433E /* TomacaTimer */ = {
 			isa = PBXGroup;
 			children = (
+				13F5619F27F99924005E0FFE /* TomacaTimer.entitlements */,
 				1350229A27F792ED00B7C142 /* Models */,
 				132D12C527F64AB4004A433E /* Views */,
 				132D129927F6426D004A433E /* TomacaTimerApp.swift */,
 				132D12C327F64923004A433E /* TimerViewModel.swift */,
 				132F56B327F8CE990080C28A /* StorageController.swift */,
+				13F5619D27F9968E005E0FFE /* NotificationController.swift */,
 				132D129D27F6426E004A433E /* Assets.xcassets */,
 				132F56C027F9192C0080C28A /* Info.plist */,
 				132D129F27F6426E004A433E /* Preview Content */,
@@ -285,6 +290,7 @@
 				1350229927F78A0100B7C142 /* Counter.swift in Sources */,
 				132D12C427F64923004A433E /* TimerViewModel.swift in Sources */,
 				1350229C27F7931200B7C142 /* WorkSession.swift in Sources */,
+				13F5619E27F9968E005E0FFE /* NotificationController.swift in Sources */,
 				132D129A27F6426D004A433E /* TomacaTimerApp.swift in Sources */,
 				132F56B827F8E09E0080C28A /* WorkListView.swift in Sources */,
 				132F56BC27F90EA50080C28A /* SettingsView.swift in Sources */,
@@ -446,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TomacaTimer/TomacaTimer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TomacaTimer/Preview Content\"";
@@ -475,6 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TomacaTimer/TomacaTimer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TomacaTimer/Preview Content\"";
