@@ -11,6 +11,50 @@ struct Counter: View {
     @State var isPaused: Bool = false
     @State private var showToast = false
     
+    var body: some View {
+        VStack {
+            Text(self.workSession.progress).padding()
+            Spacer()
+            TitleView(title: self.workSession.currentStateTitle, task: self.workSession.task, timeRemaing: $timeRemaing)
+            VStack{
+                if isPaused { ButtonView(text: "▶️ CONTINUAR", handle: self.instantiateTimer ) }
+                else { ButtonView(text: "⏸ PAUSAR", handle: self.cancelTimer ) }
+                ButtonView(text: "⏩ SIGUIENTE", handle: {
+                    self.cancelTimer()
+                    self.showToast = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.goTo(self.timeRemaing, false)
+                    }
+                })
+            }.font(.system(size: 20))
+            
+            Spacer()
+            
+                Image("logo")
+                .resizable()
+                .padding()
+                .frame(width: 90, height: 90, alignment: .leading)
+        }.background(Color("Secondary"))
+        .onAppear {
+            self.instantiateTimer()
+        }.onDisappear {
+            self.cancelTimer()
+        }.onReceive(timer) { _ in
+            self.timeRemaing -= 1
+            if self.timeRemaing == 0 {
+                self.cancelTimer()
+                self.showToast = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    goTo(self.timeRemaing, true)
+                }
+            }
+        }.toast(isPresenting: $showToast, duration: 1){
+            AlertToast(displayMode: .hud, type: .regular, title: "⏳ Bloque terminado")
+            // https://github.com/elai950/AlertToast
+            // https://medium.com/swlh/presenting-apples-music-alerts-in-swiftui-7f5c32cebed6
+        }
+    }
+    
     private func instantiateTimer() {
            self.isPaused = false
            self.timer = Timer.publish(every: 1, on: .main, in: .common)
@@ -35,58 +79,4 @@ struct Counter: View {
            self.instantiateTimer()
            return
        }
-    
-    private func timeString(time: Int) -> String {
-           let minutes = Int(time) / 60 % 60
-           let seconds = Int(time) % 60
-           return String(format:"%02i:%02i", minutes, seconds)
-       }
-    
-    var body: some View {
-        VStack {
-            Text(self.workSession.progress).padding()
-            Spacer()
-            Text(self.workSession.currentStateTitle).font(.title)
-            Text(self.workSession.task).font(.title2)
-            Text("\(timeString(time: self.timeRemaing))")
-                .fontWeight(.semibold)
-                .font(.system(size: 60))
-                .frame(height: 80.0)
-                .frame(maxWidth: .infinity)
-                .padding()
-            HStack{
-                if isPaused { Button("▶️"){ self.instantiateTimer() } }
-                else { Button("⏸"){ self.cancelTimer() } }
-                Button("⏩"){
-                    self.cancelTimer()
-                    self.showToast = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self.goTo(self.timeRemaing, false)
-                    }
-                }
-            }.font(.system(size: 40))
-            Spacer()
-                Image("logo")
-                .resizable()
-                .padding()
-                .frame(width: 90, height: 90, alignment: .leading)
-        }.onAppear {
-            self.instantiateTimer()
-        }.onDisappear {
-            self.cancelTimer()
-        }.onReceive(timer) { _ in
-            self.timeRemaing -= 1
-            if self.timeRemaing == 0 {
-                self.cancelTimer()
-                self.showToast = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    goTo(self.timeRemaing, true)
-                }
-            }
-        }.toast(isPresenting: $showToast, duration: 1){
-            AlertToast(displayMode: .hud, type: .regular, title: "⏳ Bloque terminado")
-            // https://github.com/elai950/AlertToast
-            // https://medium.com/swlh/presenting-apples-music-alerts-in-swiftui-7f5c32cebed6
-        }
-    }
 }
