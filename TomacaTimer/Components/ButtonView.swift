@@ -1,20 +1,22 @@
-//
-//  ButtonView.swift
-//  TomacaTimer
-//
-//  Created by Diana Hernández on 3/4/22.
-//
-
 import SwiftUI
 
 struct ButtonView: View {
+    var text: String
+    var handle: ()-> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(text){ handle() }
+        .padding()
+        .frame(width: 250)
+        .background(Color("Primary"))
+        .foregroundColor(.white)
+        .clipShape(Capsule())
+        .shadow(color: Color("Terciary"), radius: 1, x: 2, y: 2)
     }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView()
+        ButtonView(text: "⚙️ SETTINGS", handle: { print("Settings button is clicked")})
     }
 }
