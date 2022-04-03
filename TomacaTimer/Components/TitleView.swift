@@ -7,15 +7,15 @@ struct TitleView: View {
     
     var body: some View {
         VStack {
-            Text(title).font(.title).font(.largeTitle)
-            Text(task).font(.title2).font(.title)
+            Text(title).font(.title).font(.largeTitle).fontWeight(.semibold)
+            Text(task).font(.title2).font(.title).fontWeight(.semibold)
             Text("\(timeString(time: timeRemaing))")
-                .fontWeight(.semibold)
-                .frame(height: 80.0)
+                .fontWeight(.bold)
                 .font(.system(size: 90))
                 .frame(maxWidth: .infinity)
-                .padding()
-        }
+                .foregroundColor(Color("White"))
+                .shadow(color: .black, radius: 1)
+        }.frame(height: 180)
     }
     
     private func timeString(time: Int) -> String {
