@@ -110,7 +110,7 @@ class TimerViewModel: ObservableObject {
     }
     
     private func saveTaskName(task: String) -> Void {
-        self.workSession.task = task
+        self.workSession.task = "📚 \(task)" 
     }
     
     func updateLongBrake(longBrake: Int) {
