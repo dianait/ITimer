@@ -1,17 +1,5 @@
 import Foundation
 
-struct Work: Hashable, Encodable, Decodable {
-    let task: String
-    let date: Date
-    var time: Int
-}
-
-struct WorkString: Hashable, Encodable, Decodable {
-    let task: String
-    let date: String
-    var time: String
-}
-
 class StorageController {
     var workList: [Work] = []
     var userLongBrake: Int = 15

@@ -1,9 +1,10 @@
 import Foundation
 
+// MARK: TIMER CONFIG
 struct TimerConfig {
-    let mainTime: Int = 25 * 60
-    let shortBreakTime: Int = 5 * 60
-    var longBreakTime: Int = 15 * 60
+    let mainTime: Int = 1 * 60
+    let shortBreakTime: Int = 1 * 60
+    var longBreakTime: Int = 1 * 60
     let completeSymbol: String = "✅"
     let incompleteSymbol: String = "❌"
     let cursorSymbol: String = "⏱"
@@ -23,3 +24,24 @@ struct WorkSession {
     var workList: [Work] = []
     var currentCursor: Int = 0
 }
+
+// MARK: WORKLIST
+struct Work: Hashable, Encodable, Decodable {
+    let task: String
+    let date: Date
+    var time: Int
+}
+
+struct WorkString: Hashable, Encodable, Decodable {
+    let task: String
+    let date: String
+    var time: String
+}
+
+// MARK: NOTIFICATIONS
+struct INotification {
+    let title: String
+    let subtitle: String
+    let timeToWait: Double = 3.0
+}
+
