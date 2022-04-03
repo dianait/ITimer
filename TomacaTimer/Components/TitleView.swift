@@ -1,20 +1,26 @@
-//
-//  TitleView.swift
-//  TomacaTimer
-//
-//  Created by Diana Hernández on 3/4/22.
-//
-
 import SwiftUI
 
 struct TitleView: View {
+    let title: String
+    let task: String
+    @Binding var timeRemaing: Int
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(title).font(.title)
+            Text(task).font(.title2)
+            Text("\(timeString(time: timeRemaing))")
+                .fontWeight(.semibold)
+                .font(.system(size: 90))
+                .frame(height: 80.0)
+                .frame(maxWidth: .infinity)
+                .padding()
+        }
     }
-}
-
-struct TitleView_Previews: PreviewProvider {
-    static var previews: some View {
-        TitleView()
-    }
+    
+    private func timeString(time: Int) -> String {
+           let minutes = Int(time) / 60 % 60
+           let seconds = Int(time) % 60
+           return String(format:"%02i:%02i", minutes, seconds)
+       }
 }
