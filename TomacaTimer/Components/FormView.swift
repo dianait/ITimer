@@ -1,20 +1,17 @@
-//
-//  FormView.swift
-//  TomacaTimer
-//
-//  Created by Diana Hernández on 3/4/22.
-//
-
 import SwiftUI
 
-struct FormView: View {
+struct InputView: View {
+    let placeHolder: String
+    @Binding var task: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TextField(placeHolder, text: self.$task)
+        .padding()
+        .shadow(color: Color.gray, radius: 15, x: 10, y: 10)
+        .font(.custom("Open Sans", size: 18))
+        .border(Color.gray)
+        .background(.white)
+        .padding()
     }
 }
 
-struct FormView_Previews: PreviewProvider {
-    static var previews: some View {
-        FormView()
-    }
-}
