@@ -7,12 +7,12 @@ struct TitleView: View {
     
     var body: some View {
         VStack {
-            Text(title).font(.title)
-            Text(task).font(.title2)
+            Text(title).font(.title).font(.largeTitle)
+            Text(task).font(.title2).font(.title)
             Text("\(timeString(time: timeRemaing))")
                 .fontWeight(.semibold)
-                .font(.system(size: 90))
                 .frame(height: 80.0)
+                .font(.system(size: 90))
                 .frame(maxWidth: .infinity)
                 .padding()
         }

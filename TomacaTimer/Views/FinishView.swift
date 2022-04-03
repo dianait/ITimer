@@ -22,7 +22,7 @@ struct FinishView: View {
                 .font(.system(size: 50))
                 .frame(maxWidth: .infinity)
             WorkListView(viewModel: viewModel)
-        }
+        }.background(Color("Secondary"))
     }
 }
 

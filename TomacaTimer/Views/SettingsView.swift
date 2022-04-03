@@ -12,26 +12,29 @@ struct SettingsView: View {
             Image("logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            Text("El pomodoro medirá intervalos formados por 4 bloques de trabajo de 25 minutos con 5 minutos de descanso entre ellos. Cada tres bloques de descanso de 5 minutos, el cuarto será de 15 minutos o 30 minutos. Así que te toca elegir 👇").padding()
+            Text("El pomodoro medirá intervalos formados por 4 bloques de trabajo de 25 minutos con 5 minutos de descanso entre ellos. Cada tres bloques de descanso de 5 minutos, el cuarto será de 15 minutos o 30 minutos. Así que te toca elegir 👇")
+                .padding()
             HStack {
-                Text("Pausa larga 👉").padding()
-                Picker("Please choose a your long break", selection: $longBrake) {
+                Text("Pausa larga 👉")
+                    .padding()
+                Picker("", selection: $longBrake) {
                     ForEach(longBrakeOptions, id: \.self) {
                         Text("⏳\($0)").tag($0)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 .padding()
             }
-            Button("💾 GUARDAR"){
+            ButtonView(text: "💾 GUARDAR", handle: {
                 self.showToast = true
                 viewModel.updateLongBrake(longBrake: longBrake)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     viewModel.initialize()
                 }
-            }
-                
-        }.toast(isPresenting: $showToast, duration: 1){
-            AlertToast(displayMode: .hud, type: .regular, title: "💾 Pausa guardada")
+            })
+        }.frame(maxHeight: .infinity)
+         .background(Color("Secondary"))
+                    .toast(isPresenting: $showToast, duration: 1){
+            AlertToast(displayMode: .hud, type: .regular, title: "💾 Datos guardados")
         }
     }
 }

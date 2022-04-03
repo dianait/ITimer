@@ -101,7 +101,7 @@ class TimerViewModel: ObservableObject {
                 }
             }
             
-            if (self.workSession.counterMain < 5) {
+            if (self.workSession.counterMain < 4) {
                 progress[self.workSession.currentCursor + 1] += self.workSession.timerConfig.cursorSymbol
             }
             

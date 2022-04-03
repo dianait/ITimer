@@ -11,15 +11,7 @@ struct WorkListView: View {
                     Text("📅 \(work.date) ⏳ \(work.time)")
                 }
             }
-            HStack {
-                Button("⏪") {
-                    viewModel.initialize()
-                }.font(.system(size: 40))
-                Button("🚮") {
-                    viewModel.clearWorkList()
-                }.font(.system(size: 40))
-                
-            }
+            ButtonView(text: "⏪ VOLVER", handle:  viewModel.initialize)
         }
     }
 }
