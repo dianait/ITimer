@@ -2,9 +2,9 @@ import Foundation
 
 // MARK: TIMER CONFIG
 struct TimerConfig {
-    let mainTime: Int = 1 * 60
-    let shortBreakTime: Int = 1 * 60
-    var longBreakTime: Int = 1 * 60
+    let mainTime: Int = 25 * 60
+    let shortBreakTime: Int = 5 * 60
+    var longBreakTime: Int
     let completeSymbol: String = "✅"
     let incompleteSymbol: String = "❌"
     let cursorSymbol: String = "⏱"
@@ -12,18 +12,26 @@ struct TimerConfig {
     let BreakTitle: String = "☕️ Descanso"
 }
 
-struct WorkSession {
-    var timerConfig: TimerConfig = TimerConfig()
+class WorkSession {
     var counterMain: Int = 0
     var task: String = "📚 Jinkobot"
     var totalTime: Int = 0
     var date: Date = Date.now
-    var progress: String = "25'⏱ 5' 25' 5' 25' 5' 25' 15'"
+    var timerConfig: TimerConfig
     var currentStateTitle: String = "👩‍💻 Trabajar"
     var currentState = "work"
     var workList: [Work] = []
     var currentCursor: Int = 0
     var isTaskSave: Bool = false
+    var progress: String = ""
+    
+    init() {
+        let storage = StorageController()
+        let currentLongBrake = storage.getLongBrake()
+        self.progress = "25'⏱ 5' 25' 5' 25' 5' 25' \(currentLongBrake)'"
+        let timer = TimerConfig(longBreakTime: currentLongBrake * 60)
+        self.timerConfig = timer
+    }
 }
 
 // MARK: WORKLIST

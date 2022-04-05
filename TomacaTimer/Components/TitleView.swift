@@ -1,14 +1,15 @@
 import SwiftUI
 
 struct TitleView: View {
-    let title: String
-    var task: String
+    let viewModel: TimerViewModel
     @Binding var timeRemaing: Int
     
     var body: some View {
         VStack {
-                Text(title).font(.title).font(.largeTitle).fontWeight(.semibold)
-                Text("\(task)").font(.title2).font(.title).fontWeight(.semibold) 
+            if (viewModel.workSession.isTaskSave) {
+                Text(self.viewModel.workSession.currentStateTitle).font(.title).font(.largeTitle).fontWeight(.semibold)
+                Text("\(self.viewModel.workSession.task)").font(.title2).font(.title).fontWeight(.semibold)
+            }
                 Text("\(timeString(time: timeRemaing))")
                 .fontWeight(.bold)
                 .font(.system(size: 100))

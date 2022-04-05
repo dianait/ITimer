@@ -21,10 +21,9 @@ struct Counter: View {
             Spacer()
             if (!viewModel.workSession.isTaskSave) {
                 InputView(placeHolder: "Escribe tu tarea 🚀", task: self.$task)
-            } else {
-                TitleView(title: self.viewModel.workSession.currentStateTitle, task: self.viewModel.workSession.task, timeRemaing: $timeRemaing)
             }
-            ControllersView(showToast: $showToast, timeRemaing: $timeRemaing, instantiateTimer: self.instantiateTimer, cancelTimer: self.cancelTimer, goTo: self.next)
+            TitleView(viewModel: viewModel, timeRemaing: $timeRemaing)
+            ControllersView(showToast: $showToast, timeRemaing: $timeRemaing, instantiateTimer: self.instantiateTimer, cancelTimer: self.cancelTimer, goTo: self.next, settings: viewModel.settings)
             Spacer()
             Image("logo")
                 .resizable()
@@ -66,11 +65,14 @@ struct Counter: View {
     }
     
     private func instantiateTimer() {
-        if (!viewModel.workSession.isTaskSave) { self.saveTask() }
+        if (viewModel.workSession.isTaskSave) {
             self.isPaused = false
             self.timer = Timer.publish(every: 1, on: .main, in: .common)
             self.connectedTimer = self.timer.connect()
             return
+        }
+         self.saveTask() 
+           
     }
     
     private func saveTask() {

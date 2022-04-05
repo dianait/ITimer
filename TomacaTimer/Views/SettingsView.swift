@@ -2,7 +2,7 @@ import SwiftUI
 import AlertToast
 
 struct SettingsView: View {
-    @State private var longBrake = 15
+    @State var longBrake = 15
     var longBrakeOptions = [15, 30]
     var viewModel: TimerViewModel
     @State private var showToast = false
