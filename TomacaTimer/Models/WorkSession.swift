@@ -14,7 +14,7 @@ struct TimerConfig {
 
 class WorkSession {
     var counterMain: Int = 0
-    var task: String = "📚 Jinkobot"
+    var task: String = ""
     var totalTime: Int = 0
     var date: Date = Date.now
     var timerConfig: TimerConfig

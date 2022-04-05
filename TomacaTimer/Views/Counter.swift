@@ -18,6 +18,8 @@ struct Counter: View {
     var body: some View {
         VStack {
             Text(self.viewModel.workSession.progress).padding()
+            Text("\(self.viewModel.workSession.task)")
+            .font(.title2).font(.title).fontWeight(.semibold)
             Spacer()
             if (!viewModel.workSession.isTaskSave) {
                 InputView(placeHolder: "Escribe tu tarea 🚀", task: self.$task)
@@ -65,14 +67,10 @@ struct Counter: View {
     }
     
     private func instantiateTimer() {
-        if (viewModel.workSession.isTaskSave) {
+        if (!viewModel.workSession.isTaskSave) {  self.saveTask() }
             self.isPaused = false
             self.timer = Timer.publish(every: 1, on: .main, in: .common)
             self.connectedTimer = self.timer.connect()
-            return
-        }
-         self.saveTask() 
-           
     }
     
     private func saveTask() {
