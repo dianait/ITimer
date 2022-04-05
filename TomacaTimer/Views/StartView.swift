@@ -16,9 +16,6 @@ struct StartView: View {
                 if task != "" { viewModel.setAndStart(task: task) }
                 else { self.showToast = true }
             })
-            ButtonView(text: "⚙️ AJUSTES", handle: { viewModel.settings() })
-            ButtonView(text: "🚀 PROGRESO", handle: {})
-
         }.frame(maxHeight: .infinity)
             .background(Color("Secondary"))
             

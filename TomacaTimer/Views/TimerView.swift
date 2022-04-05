@@ -5,20 +5,18 @@ struct TimerView: View {
     var body: some View {
         VStack{
               switch viewModel.state {
-              case .idle:
-                StartView(viewModel: viewModel)
               case .settings:
                   SettingsView(viewModel: viewModel)
               case .start(let workSession):
-                  Counter(workSession: workSession,
+                  Counter(viewModel: viewModel,
                           timeRemaing: workSession.timerConfig.mainTime,
                           goTo: { time, isCompleted in viewModel.pause(time: time, isCompleted: isCompleted) })
               case .shortPause(let workSession):
-                  Counter(workSession: workSession,
+                  Counter(viewModel: viewModel,
                           timeRemaing: workSession.timerConfig.shortBreakTime,
                           goTo: { time, isCompleted in viewModel.start(time: time, isCompleted: isCompleted) })
               case .longPause(let workSession):
-                  Counter(workSession: workSession,
+                  Counter(viewModel: viewModel,
                           timeRemaing: workSession.timerConfig.longBreakTime,
                           goTo: { time, isCompleted in viewModel.finish(time: time) })
               case .finish(let workSession):

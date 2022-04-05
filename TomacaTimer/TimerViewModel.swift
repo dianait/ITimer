@@ -1,7 +1,6 @@
 import Foundation
 
 enum TimerState {
-    case idle
     case start(WorkSession)
     case settings
     case shortPause(WorkSession)
@@ -10,7 +9,7 @@ enum TimerState {
 }
 
 class TimerViewModel: ObservableObject {
-    @Published var state: TimerState = .idle
+    @Published var state: TimerState = .settings
     var workSession: WorkSession
     var storage: StorageController
     var notificacition: Notification
@@ -19,6 +18,7 @@ class TimerViewModel: ObservableObject {
         self.workSession = WorkSession()
         self.storage = StorageController()
         self.notificacition = Notification()
+        self.state = .start(self.workSession)
     }
     
     // MARK: STATES
@@ -75,12 +75,18 @@ class TimerViewModel: ObservableObject {
     func initialize() -> Void {
         self.workSession = WorkSession()
         self.workSession.timerConfig.longBreakTime = storage.getLongBrake()
-        self.state = .idle
+        self.state = .start(WorkSession())
     }
     
     func setAndStart(task: String) {
         saveTaskName(task: task)
         start(time: 0, isCompleted: false)
+    }
+    
+    func saveTask(task: String) {
+        self.workSession.counterMain += 1
+        self.workSession.isTaskSave = true
+        self.workSession.task = "📚 \(task)"
     }
     
     func settings() {
@@ -110,7 +116,7 @@ class TimerViewModel: ObservableObject {
     }
     
     private func saveTaskName(task: String) -> Void {
-        self.workSession.task = "📚 \(task)" 
+        self.workSession.task = "📚 \(task)"
     }
     
     func updateLongBrake(longBrake: Int) {

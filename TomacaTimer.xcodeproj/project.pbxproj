@@ -18,6 +18,7 @@
 		132F56B827F8E09E0080C28A /* WorkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132F56B727F8E09E0080C28A /* WorkListView.swift */; };
 		132F56BC27F90EA50080C28A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132F56BB27F90EA50080C28A /* SettingsView.swift */; };
 		132F56BF27F911C40080C28A /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 132F56BE27F911C40080C28A /* AlertToast */; };
+		134D37F527FB77FA004734DD /* ControllersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134D37F427FB77FA004734DD /* ControllersView.swift */; };
 		1350229927F78A0100B7C142 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229827F78A0100B7C142 /* Counter.swift */; };
 		1350229C27F7931200B7C142 /* WorkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350229B27F7931200B7C142 /* WorkSession.swift */; };
 		13F5619E27F9968E005E0FFE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5619D27F9968E005E0FFE /* NotificationController.swift */; };
@@ -59,6 +60,7 @@
 		132F56B727F8E09E0080C28A /* WorkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListView.swift; sourceTree = "<group>"; };
 		132F56BB27F90EA50080C28A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		132F56C027F9192C0080C28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		134D37F427FB77FA004734DD /* ControllersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersView.swift; sourceTree = "<group>"; };
 		1350229827F78A0100B7C142 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		1350229B27F7931200B7C142 /* WorkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSession.swift; sourceTree = "<group>"; };
 		13F5619D27F9968E005E0FFE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				13F561A327F9B990005E0FFE /* ButtonView.swift */,
 				13F561A727F9BE87005E0FFE /* FormView.swift */,
 				13F561AC27F9C301005E0FFE /* TitleView.swift */,
+				134D37F427FB77FA004734DD /* ControllersView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			files = (
 				13F561A827F9BE87005E0FFE /* FormView.swift in Sources */,
 				1350229927F78A0100B7C142 /* Counter.swift in Sources */,
+				134D37F527FB77FA004734DD /* ControllersView.swift in Sources */,
 				132D12C427F64923004A433E /* TimerViewModel.swift in Sources */,
 				13F561A427F9B990005E0FFE /* ButtonView.swift in Sources */,
 				1350229C27F7931200B7C142 /* WorkSession.swift in Sources */,
@@ -488,6 +492,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TomacaTimer/Preview Content\"";
+				DEVELOPMENT_TEAM = 7G4S2SGHRL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = /Users/diana.hernandez/Documents/iOS_academy/TomacaTimer/TomacaTimer/Info.plist;
@@ -518,6 +523,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TomacaTimer/Preview Content\"";
+				DEVELOPMENT_TEAM = 7G4S2SGHRL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = /Users/diana.hernandez/Documents/iOS_academy/TomacaTimer/TomacaTimer/Info.plist;

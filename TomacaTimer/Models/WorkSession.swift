@@ -15,14 +15,15 @@ struct TimerConfig {
 struct WorkSession {
     var timerConfig: TimerConfig = TimerConfig()
     var counterMain: Int = 0
-    var task: String = "Refactor ChatList Example"
+    var task: String = "📚 Jinkobot"
     var totalTime: Int = 0
     var date: Date = Date.now
     var progress: String = "25'⏱ 5' 25' 5' 25' 5' 25' 15'"
-    var currentStateTitle: String = ""
+    var currentStateTitle: String = "👩‍💻 Trabajar"
     var currentState = "work"
     var workList: [Work] = []
     var currentCursor: Int = 0
+    var isTaskSave: Bool = false
 }
 
 // MARK: WORKLIST
