@@ -6,8 +6,9 @@ La información de los retos por aquí 👇
 
 [Monthly App Challenge 2022](https://github.com/mouredev/Monthly-App-Challenge-2022)
 
+<!--
 ### 📸  Capturas de pantalla
-<!-- <table>
+ <table>
 <tr><td colspan="2"></td></tr>
 <tr><td colspan="2">Inicio</td><td colspan="2">Timer</td></tr>
 <tr>
